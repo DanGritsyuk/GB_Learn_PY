@@ -8,8 +8,8 @@ class Exercise3:
     def Start():
         os.system('cls')
         print('решение 3 задачи\n')
-        dayNum = int(input('Введите номер четверти: '))
-        match dayNum:
+        planeNum = int(input('Введите номер четверти: '))
+        match planeNum:
             case 1:
                 print('x > 0, y > 0')
             case 2:
