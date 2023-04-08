@@ -1,7 +1,7 @@
 import os
 from Exercises.Homework1.Exercise1 import Exercise1
 from Exercises.Homework1.Exercise2 import Exercise2
-# from Exercises.Homework1.Exercise3 import Exercise3
+from Exercises.Homework1.Exercise3 import Exercise3
 # from Exercises.Homework1.Exercise4 import Exercise4
 
 done = False
@@ -27,7 +27,7 @@ while not done:
             case 2:
                 Exercise2.Start()
             case 3:
-                print('решение 3  задачи\n')
+                Exercise3.Start()
             case 4:
                 print('решение 4  задачи\n')
             case _:

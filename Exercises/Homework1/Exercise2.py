@@ -7,7 +7,7 @@ class Exercise2:
     @staticmethod
     def Start():
         os.system('cls')
-        print('решение 1 задачи\n')
+        print('решение 2 задачи\n')
         point1 = Point2D(int(input('Введите координату x первой точки: ')), int(
             input('Введите координату y первой точки: ')))
         point2 = Point2D(int(input('Введите координату x второй точки: ')), int(
