@@ -1,4 +1,5 @@
 import os
+from Exercises.Homework1.Exercise1 import Exercise1
 
 done = False
 while not done:
@@ -19,13 +20,13 @@ while not done:
                 os.system('cls')
                 done = correctEnter = True
             case 1:
-                print("решение 1")
+                Exercise1.Start()
             case 2:
-                print("решение 1")
+                print('решение 2  задачи\n')
             case 3:
-                print("решение 1")
+                print('решение 3  задачи\n')
             case 4:
-                print("решение 1")
+                print('решение 4  задачи\n')
             case _:
                 print('Такой задачи нет. Повторите попытку.../n')
                 continue
