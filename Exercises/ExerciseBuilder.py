@@ -5,6 +5,7 @@ from Exercises.Homework1.Exercise3 import Exercise3
 from Exercises.Homework1.Exercise4 import Exercise4
 from Exercises.Homework2.Exercise5 import Exercise5
 from Exercises.Homework2.Exercise6 import Exercise6
+from Exercises.Homework2.Exercise7 import Exercise7
 
 
 class ExerciseBuilder:
@@ -30,6 +31,8 @@ class ExerciseBuilder:
                     Exercise5.Start()
                 case 6:
                     Exercise6.Start()
+                case 7:
+                    Exercise7.Start()
                 case _:
                     print('Такой задачи нет. Повторите попытку...\n')
                     continue
