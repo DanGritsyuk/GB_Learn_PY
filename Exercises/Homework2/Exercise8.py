@@ -1,11 +1,13 @@
-# Задача 8. Задайте список из N элементов, заполненных числами из промежутка [-N, N]. Сдвиньте все элементы списка на 2 позиции вправо.
-import os
+# Задача 4. Задайте список из N элементов, заполненных числами из промежутка [-N, N]. Сдвиньте все элементы списка на 2 позиции вправо.
+from Exercises.ExerciseAbstract import ExerciseAbstract
 
 
-class Exercise8:
+class Exercise8(ExerciseAbstract):
+    def __init__(self, description: str):
+        super().__init__(description)
 
     @staticmethod
-    def Start():
+    def Body():
 
         def ShiftElements(lstNums, shift):
             length = len(lstNums)
@@ -14,9 +16,8 @@ class Exercise8:
                 for i in range(length-1, -1, -1):
                     lstNums[i] = lstNums[i-1]
                 lstNums[0] = x
+            return lstNums
 
-        os.system('cls')
-        print('решение 8 задачи\n')
         num = abs(int(input('Введите число N: ')))
 
         lstNums = []
@@ -24,5 +25,3 @@ class Exercise8:
             lstNums.append(i)
 
         print(ShiftElements(lstNums, 2))
-
-        input("\nДля продолжения нажмите Enter...")

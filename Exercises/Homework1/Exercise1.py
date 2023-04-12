@@ -1,13 +1,13 @@
 # Задача 1. Напишите программу, которая принимает на вход цифру, обозначающую день недели, и выводит название этого дня недели.
-import os
+from Exercises.ExerciseAbstract import ExerciseAbstract
 
 
-class Exercise1:
+class Exercise1(ExerciseAbstract):
+    def __init__(self, description: str):
+        super().__init__(description)
 
     @staticmethod
-    def Start():
-        os.system('cls')
-        print('решение 1 задачи\n')
+    def Body():
         dayNum = int(input('День недели: '))
         match dayNum:
             case 1:
@@ -26,4 +26,3 @@ class Exercise1:
                 print('Воскресенье')
             case _:
                 print('Нет такого дня недели!')
-        input("\nДля продолжения нажмите Enter...")

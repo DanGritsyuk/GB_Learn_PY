@@ -1,4 +1,3 @@
-import os
 from Exercises.Homework1.Exercise1 import Exercise1
 from Exercises.Homework1.Exercise2 import Exercise2
 from Exercises.Homework1.Exercise3 import Exercise3
@@ -7,37 +6,37 @@ from Exercises.Homework2.Exercise5 import Exercise5
 from Exercises.Homework2.Exercise6 import Exercise6
 from Exercises.Homework2.Exercise7 import Exercise7
 from Exercises.Homework2.Exercise8 import Exercise8
+from Exercises.ExerciseAbstract import ExerciseAbstract
 
 
 class ExerciseBuilder:
 
     @staticmethod
-    def StartExersice():
+    def GetExersice() -> ExerciseAbstract:
         correctEnter = False
         while not correctEnter:
             taskNum = int(input('Введите номер задачи: '))
             match taskNum:
                 case 0:
-                    os.system('cls')
-                    return True
+                    return None
                 case 1:
-                    Exercise1.Start()
+                    return Exercise1('Задача 1. Напишите программу, которая принимает на вход цифру, обозначающую день недели, и выводит название этого дня недели.')
                 case 2:
-                    Exercise2.Start()
+                    return Exercise2('Задача 2. Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 2D пространстве.')
                 case 3:
-                    Exercise3.Start()
+                    return Exercise3('Задача 3. Напишите программу, которая по заданному номеру четверти, показывает диапазон возможных координат точек в этой четверти (x и y).')
                 case 4:
-                    Exercise4.Start()
+                    return Exercise4('Задача 4. Напишите программу, которая на вход принимает число (N), а на выходе показывает все чётные числа от 1 до N.')
                 case 5:
-                    Exercise5.Start()
+                    return Exercise5('Задача 1. Напишите программу, которая принимает на вход число N и выдает список факториалов для чисел от 1 до N.')
                 case 6:
-                    Exercise6.Start()
+                    return Exercise6('Задача 2. Выведите таблицу истинности для выражения ¬(X ∧ Y) ∨ Z.')
                 case 7:
-                    Exercise7.Start()
+                    return Exercise7('Задача 3. Даны две строки. Посчитайте сколько раз каждый символ первой строки встречается во второй')
+                case 7:
+                    return Exercise7('Задача 3. Даны две строки. Посчитайте сколько раз каждый символ первой строки встречается во второй')
                 case 8:
-                    Exercise8.Start()
+                    return Exercise8('Задача 4. Задайте список из N элементов, заполненных числами из промежутка [-N, N]. Сдвиньте все элементы списка на 2 позиции вправо.')
                 case _:
                     print('Такой задачи нет. Повторите попытку...\n')
                     continue
-            correctEnter = True
-        return False

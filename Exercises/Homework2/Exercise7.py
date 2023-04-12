@@ -1,11 +1,13 @@
-# Задача 2. Выведите таблицу истинности для выражения ¬(X ∧ Y) ∨ Z.
-import os
+# Задача 3. Даны две строки. Посчитайте сколько раз каждый символ первой строки встречается во второй
+from Exercises.ExerciseAbstract import ExerciseAbstract
 
 
-class Exercise7:
+class Exercise7(ExerciseAbstract):
+    def __init__(self, description: str):
+        super().__init__(description)
 
     @staticmethod
-    def Start():
+    def Body():
 
         def DeleteDoubleChars(strLine):
             chars = []
@@ -34,8 +36,6 @@ class Exercise7:
                 chrsCount.append(count)
             return chrsCount
 
-        os.system('cls')
-        print('решение 7 задачи\n')
         substring = input('Введите строку: ')
         phrase = DeleteDoubleChars(input('Введите фразу: '))
         phraseLength = len(phrase)
@@ -44,5 +44,3 @@ class Exercise7:
 
         for i in range(phraseLength):
             print(f'{phrase[i]} – {countList[i]}')
-
-        input("\nДля продолжения нажмите Enter...")

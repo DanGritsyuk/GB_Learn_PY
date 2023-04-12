@@ -1,13 +1,13 @@
-# Задача 5. Напишите программу, которая принимает на вход число N и выдает список факториалов для чисел от 1 до N.
-import os
+# Задача 1. Напишите программу, которая принимает на вход число N и выдает список факториалов для чисел от 1 до N.
+from Exercises.ExerciseAbstract import ExerciseAbstract
 
 
-class Exercise5:
+class Exercise5(ExerciseAbstract):
+    def __init__(self, description: str):
+        super().__init__(description)
 
     @staticmethod
-    def Start():
-        os.system('cls')
-        print('решение 5 задачи\n')
+    def Body():
         num = int(input('Введите число N: '))
 
         lstFactorials = []
@@ -19,5 +19,3 @@ class Exercise5:
             lstFactorials.append(factorial)
 
         print(f'N = {num} -> {lstFactorials}')
-
-        input("\nДля продолжения нажмите Enter...")
