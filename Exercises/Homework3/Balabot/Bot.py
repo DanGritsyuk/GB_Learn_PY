@@ -32,7 +32,7 @@ class Bot:
         self.onReadMode = False
 
     def ReadMessage(self, message: str) -> str:
-        if message == 'как твое имя' or message == 'как тебя зовут':
+        if message == 'кактвоеимя' or message == 'кактебязовут':
             return f'Мое имя: {self.name}. Не очень креативное, т.к. я все еще {self.varsion} версии.'
         for key in self.themes:
             if message == key:

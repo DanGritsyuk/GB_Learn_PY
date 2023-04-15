@@ -1,5 +1,6 @@
 # Задача 3. Создайте скрипт бота, который находит ответы на фразы по ключу в словаре. 
 # Бот должен, как минимум, отвечать на фразы «привет», «как тебя зовут». Если фраза ему неизвестна, он выводит соответствующую фразу.
+import os
 import re
 from Exercises.ExerciseAbstract import ExerciseAbstract
 from Exercises.Homework3.Balabot.Bot import Bot
@@ -22,6 +23,9 @@ class Exercise11(ExerciseAbstract):
             if bot.onReadMode:
                 answer = bot.SetToMemory(question, input(' |> '))
                 print(f'\n — {answer}\n')
+        input('Бот вышел из чата. Нажми Enter...')
+        os.system('cls')
+        
 
     @staticmethod
     def _GetCleanText(word: str) -> str:
