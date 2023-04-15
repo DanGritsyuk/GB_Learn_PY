@@ -6,6 +6,9 @@ from Exercises.Homework2.Exercise5 import Exercise5
 from Exercises.Homework2.Exercise6 import Exercise6
 from Exercises.Homework2.Exercise7 import Exercise7
 from Exercises.Homework2.Exercise8 import Exercise8
+from Exercises.Homework3.Exercise9 import Exercise9
+from Exercises.Homework3.Exercise10 import Exercise10
+from Exercises.Homework3.Exercise11 import Exercise11
 from Exercises.ExerciseAbstract import ExerciseAbstract
 from Exercises.ExerciseData import ExerciseData
 
@@ -13,7 +16,8 @@ from Exercises.ExerciseData import ExerciseData
 class ExerciseBuilder:
     @staticmethod
     def GetExersice(taskNum) -> ExerciseAbstract:
-        taskText = ExerciseData().GetTaskText(taskNum)
+        taskDataIndex = taskNum - 1
+        taskText = ExerciseData().GetTaskText(taskDataIndex)
         correctEnter = False
         while not correctEnter:
             match taskNum:
@@ -38,11 +42,11 @@ class ExerciseBuilder:
                 case 8:
                     return Exercise8(taskText)
                 case 9:
-                    return Exercise8(taskText)
+                    return Exercise9(taskText)
                 case 10:
-                    return Exercise8(taskText)
+                    return Exercise10(taskText)
                 case 11:
-                    return Exercise8(taskText)
+                    return Exercise11(taskText)
                 case _:
                     print('Такой задачи нет. Повторите попытку...\n')
                     continue

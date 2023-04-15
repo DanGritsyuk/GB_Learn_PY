@@ -22,17 +22,17 @@ class ExerciseData:
                 'Задача 3. Создайте скрипт бота, который находит ответы на фразы по ключу в словаре.'
             ]
         }
-        self.LinesCount = self.TaskCount()
-
+        self.LinesCount = self.TasksCount()
+    
     def GetTaskText(self, index: int) -> str:
         count = 0
         for keyWork in self.Descriptions:
             currentCount = len(self.Descriptions[keyWork])
-            if count + currentCount < index:
+            if count + currentCount <= index:
                 count += currentCount
             else:
-                return self.Descriptions[index - count]
-    
+                return self.Descriptions[keyWork][index - count]
+
     def TasksCount(self):
         count = 0
         for keyWork in self.Descriptions:
