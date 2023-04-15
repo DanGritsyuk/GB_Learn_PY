@@ -8,4 +8,17 @@ class Exercise10(ExerciseAbstract):
 
     @staticmethod
     def Body():
-        print()
+        fruitsList = [
+            'Абрикос', 'Авокадо', 'Айва', 'Аки', 'Алиберция','Алыча', 'Апельсин', 
+            'Бакау', 'Балия', 'Банан', 'Виноград', 'Вишня','Гандария', 'Генипа', 'Груша', 'Яблоко'
+        ]
+
+        frChr = str(input('Введите букву:')).upper()
+
+        noneFrits = True
+        for frute in fruitsList:
+            if frute[0] == frChr:
+                print(frute, end=' ')
+                noneFrits = False
+        if noneFrits:
+            print('не знаю таких фруктов :(')
