@@ -1,5 +1,6 @@
 # Задача 2. Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 2D пространстве.
 from Exercises.ExerciseAbstract import ExerciseAbstract
+from Exercises.Homework1.Point2D import Point2D
 
 
 class Exercise2(ExerciseAbstract):
@@ -14,13 +15,3 @@ class Exercise2(ExerciseAbstract):
             input('Введите координату y второй точки: ')))
 
         print(f'Расстояние равно: {Point2D.GetDistance(point1, point2)}')
-
-
-class Point2D:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-    @staticmethod
-    def GetDistance(point1, point2):
-        return ((point2.x - point1.x) ** 2 + (point2.y - point1.y) ** 2) ** (0.5)

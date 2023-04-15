@@ -1,5 +1,7 @@
 import os
 from abc import ABC, abstractmethod
+from MenuRender import MenuRender
+
 
 class ExerciseAbstract(ABC):
     def __init__(self, description: str):
@@ -13,28 +15,23 @@ class ExerciseAbstract(ABC):
         def DrawHeader():
             os.system('cls')
             print(self._description)
-            print("==========================================")
+            print('==========================================')
 
         done = False
         while not done:
-            DrawHeader()  
+            DrawHeader()
             try:
                 self.Body()
             except:
-                DrawHeader()                
+                DrawHeader()
                 print('\nОшибка выполнения...')
             done = self.End()
 
-    def End(self):
+    def End(self) -> bool:
         print()
-        print("Вернуться в главное меню?")
-        
-        flag = True
-        while flag:
-            answer = str(input("Введите (y/n): "))
-            if answer.lower() == 'y':
-                return True
-            elif answer.lower() == 'n' :
-                flag = False
-            else:
-                print("Ошибка ввода данных. Повторите попытку...")
+        answer = MenuRender.StartRenderMenu(
+            {'Выберите следующий шаг:': ['Выход в главное меню.', 'Начать заново.']},
+            False,
+            False,
+        )
+        return answer == 1
