@@ -6,8 +6,8 @@ from MenuRender import MenuRender
 
 done = False
 while not done:
-    os.system('cls')
-    taskId = MenuRender.StartRenderMenu(ExerciseData().Descriptions, True)
+    os.system("cls")
+    taskId = MenuRender.StartRenderMenu(ExerciseData().Descriptions, taskId - 1, True)
 
     exercise = ExerciseBuilder.GetExersice(taskId)
     if exercise != None:
@@ -15,5 +15,5 @@ while not done:
     else:
         done = True
 
-os.system('cls')
-print('Программа закрыта.')
+os.system("cls")
+print("Программа закрыта.")

@@ -7,6 +7,7 @@ class MenuRender:
     @staticmethod
     def StartRenderMenu(
         menuData: dict[str, list[str]],
+        index: int = 0,
         showHelpControl: bool = False,
         isEscActive: bool = True,
     ) -> int:
