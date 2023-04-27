@@ -19,9 +19,9 @@ from Exercises.ExerciseData import ExerciseData
 
 class ExerciseBuilder:
     @staticmethod
-    def GetExersice(taskNum) -> ExerciseAbstract:
+    def GetExersice(exerciseData: ExerciseData, taskNum: int) -> ExerciseAbstract:
         taskDataIndex = taskNum - 1
-        taskText = ExerciseData().GetTaskText(taskDataIndex)
+        taskText = exerciseData.GetTaskText(taskDataIndex)
         correctEnter = False
         while not correctEnter:
             match taskNum:
@@ -57,6 +57,9 @@ class ExerciseBuilder:
                     return Exercise13(taskText)
                 case 14:
                     return Exercise14(taskText)
+                case 29:
+                    return Exercise13(taskText)
+                case 30:
+                    return Exercise14(taskText)
                 case _:
-                    print('Такой задачи нет. Повторите попытку...\n')
-                    break
+                    raise Exception('Такой задачи нет или она еще в разработке...\n')

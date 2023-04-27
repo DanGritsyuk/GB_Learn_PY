@@ -29,7 +29,7 @@ class ExerciseData:
                 'Задача 4. Даны два файла, в каждом из которых находится запись многочлена. Найдите сумму данных многочленов.'
             ]
         }
-        self.LinesCount = self.TasksCount()
+        self.LinesCount = self._TasksCount()
     
     def GetTaskText(self, index: int) -> str:
         count = 0
@@ -40,7 +40,7 @@ class ExerciseData:
             else:
                 return self.Descriptions[keyWork][index - count]
 
-    def TasksCount(self):
+    def _TasksCount(self):
         count = 0
         for keyWork in self.Descriptions:
             count += len(self.Descriptions[keyWork])

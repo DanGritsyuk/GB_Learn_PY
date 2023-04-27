@@ -1,9 +1,13 @@
+import os
+import sys
 import msvcrt
+import ctypes
 
 from Exercises.Homework1.Point2D import Point2D
 
 
 class ConsoleManager:
+
     @staticmethod
     def GetCursorCoordinate() -> Point2D:
         print('\033[A\033[6n')
@@ -53,5 +57,26 @@ class ConsoleManager:
                     return 'up'
                 elif key == b'P':
                     return 'down'
+                elif key == b'K':
+                    return 'left'
+                elif key == b'M':
+                    return 'rigth'
             case b'\x1b':
                 return 'esc'
+    @staticmethod
+    def HideCursor(isHidden: bool) -> str:
+        if os.name == 'nt':
+            ci = _CursorInfo()
+            handle = ctypes.windll.kernel32.GetStdHandle(-11)
+            ctypes.windll.kernel32.GetConsoleCursorInfo(handle, ctypes.byref(ci))
+            ci.visible = isHidden
+            ctypes.windll.kernel32.SetConsoleCursorInfo(handle, ctypes.byref(ci))
+        elif os.name == 'posix':
+            if isHidden:
+                sys.stdout.write("\033[?25l")
+            else:
+                sys.stdout.write("\033[?25h")
+
+class _CursorInfo(ctypes.Structure):
+    _fields_ = [("size", ctypes.c_int),
+                ("visible", ctypes.c_byte)]

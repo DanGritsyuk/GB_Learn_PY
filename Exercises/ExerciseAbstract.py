@@ -30,8 +30,6 @@ class ExerciseAbstract(ABC):
     def End(self) -> bool:
         print()
         answer = MenuRender.StartRenderMenu(
-            {'Выберите следующий шаг:': ['Выход в главное меню.', 'Начать заново.']},
-            False,
-            False,
+            {'Выберите следующий шаг:': ['Выход в главное меню.', 'Начать заново.']}
         )
         return answer == 1
