@@ -12,7 +12,9 @@ from Exercises.Homework3.Exercise11 import Exercise11
 from Exercises.Homework4.Exercise12 import Exercise12
 from Exercises.Homework4.Exercise13 import Exercise13
 from Exercises.Homework4.Exercise14 import Exercise14
+#from Exercises.Homework4.Exercise15 import Exercise15
 from Exercises.Homework5.Exercise16 import Exercise16
+from Exercises.Homework5.Exercise17 import Exercise17
 
 from Exercises.ExerciseAbstract import ExerciseAbstract
 from Exercises.ExerciseData import ExerciseData
@@ -60,6 +62,8 @@ class ExerciseBuilder:
                     return Exercise14(taskText)
                 case 16:
                     return Exercise16(taskText)
+                case 17:
+                    return Exercise17(taskText)
                 case _:
-                    print("Такой задачи нет. Повторите попытку...\n")
+                    print('Такой задачи нет. Повторите попытку...\n')
                     break

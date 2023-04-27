@@ -10,7 +10,7 @@ exerciseData = ExerciseData()
 taskId = 1
 done = False
 while not done:
-    os.system("cls")
+    os.system('cls')
     taskId = MenuRender.StartRenderMenu(
         exerciseData.Descriptions, taskId - 1, CONST_MENU_COUNT, True, True
     )
@@ -24,5 +24,5 @@ while not done:
         print(ex)
         ConsoleManager.GetKeyEvent()
 
-os.system("cls")
-print("Программа закрыта.")
+os.system('cls')
+print('Программа закрыта.')

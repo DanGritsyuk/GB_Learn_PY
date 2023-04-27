@@ -12,7 +12,7 @@ class MenuRender:
         consoleLines: int = 0,
         isEscActive: bool = False,
         showHelpControl: bool = False,
-        prefix: str = "> ",
+        prefix: str = '> ',
     ) -> int:
         HEADER_LINE_COUNT = 2
         largeKey = MenuRender._LargesKeyTasks(menuData) + HEADER_LINE_COUNT + 1
@@ -48,7 +48,7 @@ class MenuRender:
                 if page.startLineIndex <= index < page.startLineIndex + page.linesCount:
                     page.currentLineIndex = index - page.startLineIndex
                     return page
-            raise Exception("Page not found!")
+            raise Exception('Page not found!')
 
         pagesMap = MenuRender._SplitDataToPages(
             menuData, consoleLines, HEADER_LINE_COUNT
@@ -62,22 +62,22 @@ class MenuRender:
         while True:
             key = ConsoleManager.GetKeyEvent()
             match key:
-                case "enter":
+                case 'enter':
                     ConsoleManager.HideCursor(False)
                     return page.currentLineIndex + page.startLineIndex + 1
-                case "up":
+                case 'up':
                     if page.currentLineIndex > 0:
                         page.currentLineIndex -= 1
-                case "down":
+                case 'down':
                     if page.currentLineIndex < MenuRender._LineCount(page.pageData) - 1:
                         page.currentLineIndex += 1
-                case "left":
+                case 'left':
                     if page.pageId > 1:
                         page = GetNextPage(page, -1)
-                case "rigth":
+                case 'rigth':
                     if page.pageId < pageCount:
                         page = GetNextPage(page, 1)
-                case "esc":
+                case 'esc':
                     if isEscActive:
                         return 0
             StartDraw()
@@ -120,17 +120,17 @@ class MenuRender:
         for key in page.pageData:
             if blockIdCount > 0:
                 print()
-            print(f"{key}")
+            print(f'{key}')
             for i, line in enumerate(page.pageData[key]):
                 i += blockIdCount
                 isSelected = i == page.currentLineIndex
-                prToConsole = prefix if isSelected else str(" " * len(prefix))
-                print(f"{prToConsole}{line}")
+                prToConsole = prefix if isSelected else str(' ' * len(prefix))
+                print(f'{prToConsole}{line}')
             blockIdCount += len(page.pageData[key])
         if showHelpControl:
-            strPageNumbers = ""
+            strPageNumbers = ''
             if pagesCount > 1:
-                strPageNumbers = "▪" * pagesCount
+                strPageNumbers = '▪' * pagesCount
                 strPageId = str(page.pageId)
                 for i in range(len(strPageId)):
                     strPageNumbers = (
@@ -138,23 +138,23 @@ class MenuRender:
                         + strPageId[i]
                         + strPageNumbers[page.pageId + i :]
                     )
-            indent = " " * 50
+            indent = ' ' * 50
             if pagesCount > 2:
                 if page.pageId > 1:
-                    strPageNumbers = "← " + strPageNumbers
+                    strPageNumbers = '← ' + strPageNumbers
                 else:
-                    strPageNumbers = "  " + strPageNumbers
+                    strPageNumbers = '  ' + strPageNumbers
                 if page.pageId < pagesCount:
-                    strPageNumbers = strPageNumbers + " →"
+                    strPageNumbers = strPageNumbers + ' →'
             print(
-                "\n" * int(linesCount - page.linesCount - len(page.pageData) * 2),
-                end=f"{indent}{strPageNumbers}\n",
+                '\n' * int(linesCount - page.linesCount - len(page.pageData) * 2),
+                end=f'{indent}{strPageNumbers}\n',
             )
 
-            padding = "=" * int(MenuRender._GetLargesLineLength(page.pageData))
-            pagesSwitchInfo = "← → - переключать страницы. " if pagesCount > 1 else ""
+            padding = '=' * int(MenuRender._GetLargesLineLength(page.pageData))
+            pagesSwitchInfo = '← → - переключать страницы. ' if pagesCount > 1 else ''
             print(
-                f"{padding}\n↑ ↓ - перемещаться между строками. {pagesSwitchInfo}Enter - выбрать задачу. Для выхода нажмите Esc."
+                f'{padding}\n↑ ↓ - перемещаться между строками. {pagesSwitchInfo}Enter - выбрать задачу. Для выхода нажмите Esc.'
             )
         print()
 
@@ -187,4 +187,4 @@ class MenuRender:
     @staticmethod
     def _ClearConsoleText(charsCount: int, linesCount: int):
         for _ in range(linesCount):
-            print(" " * charsCount)
+            print(' ' * charsCount)
