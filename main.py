@@ -1,19 +1,28 @@
 import os
+from ConsoleManager import ConsoleManager
 
 from Exercises.ExerciseBuilder import ExerciseBuilder
 from Exercises.ExerciseData import ExerciseData
 from MenuRender import MenuRender
 
+CONST_MENU_COUNT = 30
+exerciseData = ExerciseData()
+taskId = 1
 done = False
 while not done:
     os.system("cls")
-    taskId = MenuRender.StartRenderMenu(ExerciseData().Descriptions, taskId - 1, True)
-
-    exercise = ExerciseBuilder.GetExersice(taskId)
-    if exercise != None:
-        exercise.Start()
-    else:
-        done = True
+    taskId = MenuRender.StartRenderMenu(
+        exerciseData.Descriptions, taskId - 1, CONST_MENU_COUNT, True, True
+    )
+    try:
+        exercise = ExerciseBuilder.GetExersice(exerciseData, taskId)
+        if exercise != None:
+            exercise.Start()
+        else:
+            done = True
+    except Exception as ex:
+        print(ex)
+        ConsoleManager.GetKeyEvent()
 
 os.system("cls")
 print("Программа закрыта.")

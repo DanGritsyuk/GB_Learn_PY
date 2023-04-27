@@ -20,9 +20,9 @@ from Exercises.ExerciseData import ExerciseData
 
 class ExerciseBuilder:
     @staticmethod
-    def GetExersice(taskNum) -> ExerciseAbstract:
+    def GetExersice(exerciseData: ExerciseData, taskNum: int) -> ExerciseAbstract:
         taskDataIndex = taskNum - 1
-        taskText = ExerciseData().GetTaskText(taskDataIndex)
+        taskText = exerciseData.GetTaskText(taskDataIndex)
         correctEnter = False
         while not correctEnter:
             match taskNum:
