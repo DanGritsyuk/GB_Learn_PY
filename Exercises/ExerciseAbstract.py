@@ -22,7 +22,7 @@ class ExerciseAbstract(ABC):
             DrawHeader()
             try:
                 self.Body()
-            except:
+            except Exception as ex:
                 DrawHeader()
                 print('\nОшибка выполнения...')
             done = self.End()

@@ -63,6 +63,11 @@ class ConsoleManager:
                     return 'rigth'
             case b'\x1b':
                 return 'esc'
+
+    @staticmethod
+    def PrintASCIIText(text: str):
+        print(text)
+
     @staticmethod
     def HideCursor(isHidden: bool) -> str:
         if os.name == 'nt':

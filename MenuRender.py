@@ -13,10 +13,11 @@ class MenuRender:
         isEscActive: bool = False,
         showHelpControl: bool = False,
         prefix: str = '> ',
+        prafixMark: str = '' 
     ) -> int:
         HEADER_LINE_COUNT = 2
-        largeKey = MenuRender._LargesKeyTasks(menuData) + HEADER_LINE_COUNT + 1
-        consoleLines = largeKey if largeKey > consoleLines else consoleLines
+        largestKey = MenuRender._LargestKeyTasks(menuData) + HEADER_LINE_COUNT + 1
+        consoleLines = largestKey if largestKey > consoleLines else consoleLines
 
         def StartDraw():
             MenuRender._DrawMenu(
@@ -26,12 +27,13 @@ class MenuRender:
                 consoleLines,
                 showHelpControl,
                 prefix,
+                prafixMark
             )
 
         def GetNextPage(_page: PageData, step: int) -> PageData:
             ConsoleManager.SetCursorPosition(cursorStartPosition)
             MenuRender._ClearConsoleText(
-                MenuRender._GetLargesLineLength(_page.pageData) + len(prefix),
+                MenuRender._GetLargestLineLength(_page.pageData) + len(prefix),
                 consoleLines,
             )
             currentIndex = _page.currentLineIndex
@@ -50,6 +52,14 @@ class MenuRender:
                     return page
             raise Exception('Page not found!')
 
+        def EndDraw(_page: PageData):
+            ConsoleManager.HideCursor(False)
+            ConsoleManager.SetCursorPosition(cursorStartPosition)
+            MenuRender._ClearConsoleText(
+                MenuRender._GetLargestLineLength(_page.pageData) + len(prefix),
+                consoleLines)
+            ConsoleManager.SetCursorPosition(cursorStartPosition)
+
         pagesMap = MenuRender._SplitDataToPages(
             menuData, consoleLines, HEADER_LINE_COUNT
         )
@@ -63,7 +73,7 @@ class MenuRender:
             key = ConsoleManager.GetKeyEvent()
             match key:
                 case 'enter':
-                    ConsoleManager.HideCursor(False)
+                    EndDraw(page)
                     return page.currentLineIndex + page.startLineIndex + 1
                 case 'up':
                     if page.currentLineIndex > 0:
@@ -79,6 +89,7 @@ class MenuRender:
                         page = GetNextPage(page, 1)
                 case 'esc':
                     if isEscActive:
+                        EndDraw(page)
                         return 0
             StartDraw()
 
@@ -114,9 +125,11 @@ class MenuRender:
         linesCount: int,
         showHelpControl: bool,
         prefix: str,
+        prefixMark: str
     ):
         ConsoleManager.SetCursorPosition(cursorStartPosition)
         blockIdCount = 0
+        largestLine = int(MenuRender._GetLargestLineLength(page.pageData))
         for key in page.pageData:
             if blockIdCount > 0:
                 print()
@@ -124,8 +137,14 @@ class MenuRender:
             for i, line in enumerate(page.pageData[key]):
                 i += blockIdCount
                 isSelected = i == page.currentLineIndex
-                prToConsole = prefix if isSelected else str(' ' * len(prefix))
-                print(f'{prToConsole}{line}')
+                if isSelected: MenuRender._ClearLineText(largestLine)
+                if prefixMark == '':
+                    
+                    prToConsole = prefix if isSelected else str(' ' * len(prefix))
+                    print(f'{prToConsole}{line}')
+                else:
+                    prToConsole = line.replace(prefixMark, prefix) if isSelected else line.replace(prefixMark, str(' ' * len(prefixMark)))
+                    print(f'{prToConsole}')
             blockIdCount += len(page.pageData[key])
         if showHelpControl:
             strPageNumbers = ''
@@ -146,12 +165,14 @@ class MenuRender:
                     strPageNumbers = '  ' + strPageNumbers
                 if page.pageId < pagesCount:
                     strPageNumbers = strPageNumbers + ' →'
+                else:
+                    strPageNumbers = strPageNumbers + '  '
             print(
                 '\n' * int(linesCount - page.linesCount - len(page.pageData) * 2),
                 end=f'{indent}{strPageNumbers}\n',
             )
 
-            padding = '=' * int(MenuRender._GetLargesLineLength(page.pageData))
+            padding = '=' * largestLine
             pagesSwitchInfo = '← → - переключать страницы. ' if pagesCount > 1 else ''
             print(
                 f'{padding}\n↑ ↓ - перемещаться между строками. {pagesSwitchInfo}Enter - выбрать задачу. Для выхода нажмите Esc.'
@@ -166,7 +187,7 @@ class MenuRender:
         return count
 
     @staticmethod
-    def _GetLargesLineLength(menuData: dict[str, list[str]]):
+    def _GetLargestLineLength(menuData: dict[str, list[str]]):
         largesLineLength = 0
         for key in menuData:
             maxLength = max([len(line) for line in menuData[key]])
@@ -175,7 +196,7 @@ class MenuRender:
         return largesLineLength
 
     @staticmethod
-    def _LargesKeyTasks(menuData: dict[str, list[str]]) -> int:
+    def _LargestKeyTasks(menuData: dict[str, list[str]]) -> int:
         largesKeyTasks = 0
         for key in menuData:
             lengthKeyTasks = len(menuData[key])
@@ -188,3 +209,9 @@ class MenuRender:
     def _ClearConsoleText(charsCount: int, linesCount: int):
         for _ in range(linesCount):
             print(' ' * charsCount)
+
+    @staticmethod
+    def _ClearLineText(lineCount: int):
+        pointCursor = ConsoleManager.GetCursorCoordinate()
+        print(' ' * lineCount)
+        ConsoleManager.SetCursorPosition(pointCursor)
