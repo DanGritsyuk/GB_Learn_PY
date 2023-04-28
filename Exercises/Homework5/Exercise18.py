@@ -1,7 +1,6 @@
-# Крестики нолики
-from Exercises.Homework5.XOgame.Gameplay import Gameplay
+# Задача 3. Задайте список случайных чисел от 1 до 10. Посчитайте, сколько всего совпадающих элементов есть в списке. Удалите все повторяющиеся элементы.
+import random
 from Exercises.ExerciseAbstract import ExerciseAbstract
-from MenuRender import MenuRender
 
 
 class Exercise18(ExerciseAbstract):
@@ -10,35 +9,17 @@ class Exercise18(ExerciseAbstract):
 
     @staticmethod
     def Body():
-        isMultiplayer, botIsFirstCheck = Exercise18._MakeChoice()
-        if isMultiplayer == None:
-            print('ИГРА ОТМЕНЕНА')
-        else:
-            game = Gameplay(isMultiplayer, botIsFirstCheck)
-            game.StartGame()
+        numbers = [random.randint(1, 10) for i in range(10)]
+        print(f'Исходный список: {numbers}')
 
-    @staticmethod
-    def _MakeChoice() -> int:
-        answer = MenuRender.StartRenderMenu(
-            {
-                'ИГРА КРЕСТИКИ НОЛИКИ\n':
-                ['||| Игрок X против игрока O', '||| Игрок X против компьютера', '||| Компьютер против Игрока O', '||| ВЫХОД']
-            },
-            0,
-            0,
-            True,
-            False,
-            '➤ ',
-            '|||'
-        )
-        match answer:
-            case 0:
-                return None, None 
-            case 1:
-                return True, False 
-            case 2:
-                return False, False 
-            case 3:
-                return False, True 
-            case 4:
-                return None, None
+        duplicates = {}
+        for i in numbers:
+            if i in duplicates:
+                duplicates[i] += 1
+            else:
+                duplicates[i] = 1
+        setList = list(set(numbers))
+
+        for key in duplicates:
+            print(f'{key} - {duplicates[key]}')
+        print(setList)
