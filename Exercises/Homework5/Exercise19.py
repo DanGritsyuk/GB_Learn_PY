@@ -21,7 +21,7 @@ class Exercise19(ExerciseAbstract):
     def _MakeChoice() -> int:
         answer = MenuRender.StartRenderMenu(
             {
-                'ИГРА КРЕСТИКИ НОЛИКИ\n':
+                'ИГРА КРЕСТИКИ-НОЛИКИ\n':
                 ['||| Игрок X против Игрока O', '||| Игрок X против компьютера', '||| Компьютер против Игрока O', '||| ВЫХОД']
             },
             0,
