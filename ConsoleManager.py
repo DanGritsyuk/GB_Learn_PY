@@ -74,7 +74,7 @@ class ConsoleManager:
             ci = _CursorInfo()
             handle = ctypes.windll.kernel32.GetStdHandle(-11)
             ctypes.windll.kernel32.GetConsoleCursorInfo(handle, ctypes.byref(ci))
-            ci.visible = isHidden
+            ci.visible = not isHidden
             ctypes.windll.kernel32.SetConsoleCursorInfo(handle, ctypes.byref(ci))
         elif os.name == 'posix':
             if isHidden:

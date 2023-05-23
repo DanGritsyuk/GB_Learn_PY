@@ -66,10 +66,10 @@ class MenuRender:
         page = GetCheckCoordinates()
         pageCount = len(pagesMap)
 
-        cursorStartPosition = ConsoleManager.GetCursorCoordinate()
-        ConsoleManager.HideCursor(True)
+        cursorStartPosition = ConsoleManager.GetCursorCoordinate()        
         StartDraw()
         while True:
+            ConsoleManager.HideCursor(True)
             key = ConsoleManager.GetKeyEvent()
             match key:
                 case 'enter':
