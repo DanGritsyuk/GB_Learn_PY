@@ -8,4 +8,17 @@ class Exercise25(ExerciseAbstract):
 
     @staticmethod
     def Body():
-        num = input('Введите число N: ')
+        name = input('Введите имя: ')
+        Exercise25.PrintHello(name)
+
+    def Repeat(numRepeats):
+        def Decorator(func):
+            def Wrapper(*args):
+                for i in range(numRepeats):
+                    func(*args)
+            return Wrapper
+        return Decorator
+    
+    @Repeat(4)
+    def PrintHello(name):
+        print(f"Привет, {name}!")
