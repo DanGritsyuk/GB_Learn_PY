@@ -21,6 +21,8 @@ from Exercises.Homework5.Exercise19 import Exercise19
 from Exercises.Homework6.Exercise21 import Exercise21
 from Exercises.Homework6.Exercise22 import Exercise22
 from Exercises.Homework6.Exercise23 import Exercise23
+from Exercises.Homework7.Exercise24 import Exercise24
+from Exercises.Homework7.Exercise25 import Exercise25
 
 from Exercises.ExerciseAbstract import ExerciseAbstract
 from Exercises.ExerciseData import ExerciseData
@@ -80,6 +82,10 @@ class ExerciseBuilder:
                     return Exercise22(taskText)
                 case 23:
                     return Exercise23(taskText)
+                case 24:
+                    return Exercise24(taskText)
+                case 25:
+                    return Exercise25(taskText)
                 case _:
                     raise Exception('Такой задачи нет или она еще в разработке...')
                     
