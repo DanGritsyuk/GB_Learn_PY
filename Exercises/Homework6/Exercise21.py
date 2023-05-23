@@ -8,4 +8,5 @@ class Exercise21(ExerciseAbstract):
 
     @staticmethod
     def Body():
-        print('Задача 1')
+        num = input('Введите число N: ')
+        print(f'Результат: {int(num) + int(num * 2) + int(num * 3)}')

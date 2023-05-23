@@ -8,4 +8,14 @@ class Exercise23(ExerciseAbstract):
 
     @staticmethod
     def Body():
-        print('Задача 3')
+        def Check(x, y):
+            for division in range(2, x + 1):
+                if x % division == 0 and y % division == 0:
+                    return False
+            return True
+
+        for y in range(2, 12):
+            for x in range(1, y):
+                if Check(x, y):
+                    print(f'{x}/{y}', end=' ')
+            print()
