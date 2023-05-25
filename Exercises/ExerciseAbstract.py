@@ -24,7 +24,7 @@ class ExerciseAbstract(ABC):
                 self.Body()
             except Exception as ex:
                 DrawHeader()
-                print('\nОшибка выполнения...')
+                print(ex)
             done = self.End()
 
     def End(self) -> bool:
