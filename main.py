@@ -8,8 +8,8 @@ from MenuRender import MenuRender
 CONST_MENU_COUNT = 30
 exerciseData = ExerciseData()
 taskId = 1
-done = False
-while not done:
+appIsRun = True
+while appIsRun:
     os.system('cls')
     taskId = MenuRender.StartRenderMenu(
         exerciseData.Descriptions, taskId - 1, CONST_MENU_COUNT, True, True
@@ -19,7 +19,7 @@ while not done:
         if exercise != None:
             exercise.Start()
         else:
-            done = True
+            appIsRun = False
     except Exception as ex:
         print(ex)
         ConsoleManager.GetKeyEvent()
