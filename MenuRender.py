@@ -189,8 +189,10 @@ class MenuRender:
     @staticmethod
     def _GetLargestLineLength(menuData: dict[str, list[str]]):
         largesLineLength = 0
-        for key in menuData:
-            maxLength = max([len(line) for line in menuData[key]])
+        for _, value in menuData.items():
+            if len(value) == 0:
+                continue
+            maxLength = max([len(line) for line in value])
             if largesLineLength < maxLength:
                 largesLineLength = maxLength
         return largesLineLength

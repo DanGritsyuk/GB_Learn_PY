@@ -9,7 +9,7 @@ class Exercise18(ExerciseAbstract):
 
     @staticmethod
     def Body():
-        numbers = [random.randint(1, 10) for i in range(10)]
+        numbers = [random.randint(1, 10) for _ in range(10)]
         print(f'Исходный список: {numbers}')
 
         duplicates = {}

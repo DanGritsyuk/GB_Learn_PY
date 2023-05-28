@@ -19,6 +19,6 @@ class Exercise25(ExerciseAbstract):
             return Wrapper
         return Decorator
     
-    @Repeat(4)
+    @Repeat(5)
     def PrintHello(name):
         print(f"Привет, {name}!")
