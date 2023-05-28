@@ -12,7 +12,18 @@ class Exercise26(ExerciseAbstract):
     @staticmethod
     def Body():
         lstNums = [random.randint(0, 10) for _ in range(10)]
-        unique = np.unique(lstNums)
+        unique, counts = np.unique(lstNums, return_counts=True)
+        lstUnique = []
+
+        for i, count in enumerate(counts):
+            if count == 1:
+                lstUnique.append(unique[i])
+
         print(f'Элементы: {lstNums}' )
-        print(f'Уникальные элементы: {unique}' )
-        print(f'Количество уникальных элементов: {len(unique)}' )
+        
+        uniqueCount = len(lstUnique)
+        if uniqueCount > 0:
+            print(f'Уникальные элементы: {lstUnique}' )
+            print(f'Количество уникальных элементов: {uniqueCount}' )
+        else:
+            print('Нет уникальных элементов' )
