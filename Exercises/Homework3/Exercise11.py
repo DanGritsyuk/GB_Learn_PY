@@ -25,6 +25,8 @@ class Exercise11(ExerciseAbstract):
                 print(f'\n — {answer}\n')
         input('Бот вышел из чата. Нажми Enter...')
         os.system('cls')
+
+        return True
         
 
     @staticmethod

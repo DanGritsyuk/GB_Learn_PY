@@ -8,7 +8,7 @@ class ExerciseAbstract(ABC):
         self._description = description
 
     @abstractmethod
-    def Body(self):
+    def Body(self) -> bool:
         pass
 
     def Start(self):
@@ -21,11 +21,12 @@ class ExerciseAbstract(ABC):
         while not done:
             DrawHeader()
             try:
-                self.Body()
+                done = self.Body()
             except Exception as ex:
                 DrawHeader()
                 print(ex)
-            done = self.End()
+            if not done:
+                done = self.End()
 
     def End(self) -> bool:
         print()

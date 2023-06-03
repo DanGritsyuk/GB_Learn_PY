@@ -12,13 +12,13 @@ class Exercise19(ExerciseAbstract):
     def Body():
         isMultiplayer, botIsFirstCheck = Exercise19._MakeChoice()
         if isMultiplayer == None:
-            print('ИГРА ОТМЕНЕНА')
+            return True
         else:
             game = Gameplay(isMultiplayer, botIsFirstCheck)
             game.StartGame()
 
     @staticmethod
-    def _MakeChoice() -> int:
+    def _MakeChoice() -> tuple[bool, bool]:
         answer = MenuRender.StartRenderMenu(
             {
                 'ИГРА КРЕСТИКИ-НОЛИКИ\n':
@@ -32,13 +32,11 @@ class Exercise19(ExerciseAbstract):
             '|||'
         )
         match answer:
-            case 0:
-                return None, None 
             case 1:
                 return True, False 
             case 2:
                 return False, False 
             case 3:
                 return False, True 
-            case 4:
+            case _:
                 return None, None
